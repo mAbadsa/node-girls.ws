@@ -56,9 +56,9 @@ const router = (req, res) => {
               JSON.stringify({
                 [timeStamp]: querystring.parse(blogpostData).blogpost,
               }),
-              (err) => {
-                if (err) {
-                  // console.log(error);
+              // eslint-disable-next-line consistent-return
+              (error) => {
+                if (error) {
                   res.writeHead(500, { 'Content-Type': 'text/html' });
                   return res.end('<h1>Internal Server Error</h1>');
                 }
@@ -68,8 +68,8 @@ const router = (req, res) => {
             // const timeStamp = Date.now();
             const dataPost = JSON.parse(data);
             dataPost[timeStamp] = querystring.parse(blogpostData).blogpost;
-            fs.writeFile(pathFile, JSON.stringify(dataPost, null, 4), (err) => {
-              if (err) {
+            fs.writeFile(pathFile, JSON.stringify(dataPost, null, 4), (error) => {
+              if (error) {
                 // console.log(error);
                 res.writeHead(500, { 'Content-Type': 'text/html' });
                 return res.end('<h1>Internal Server Error</h1>');
@@ -78,7 +78,7 @@ const router = (req, res) => {
                 'Content-Type': 'text/html',
                 Location: '/',
               });
-              res.end();
+              return res.end();
             });
           }
         });
