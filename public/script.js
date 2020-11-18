@@ -5,12 +5,12 @@ document.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           const data = JSON.parse(xhr.responseText);
-          for (let blogPost in data) {
+          for (const blogPost in data) {
             const postDiv = document.createElement('div');
             const postText = document.createElement('p');
             const thumbnail = document.createElement('img');
             const postContainer = document.getElementsByClassName(
-              'post-container'
+              'post-container',
             )[0];
 
             thumbnail.src = './public/img/logo2.png';
